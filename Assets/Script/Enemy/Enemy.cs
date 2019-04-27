@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour {
 	private float damage;
 	private int startAttackDelay;
 	private int attackDelay;
-	public Transform target;
+	public GameObject target;
 
 	public string EnemyName
 	{
@@ -40,5 +40,5 @@ public abstract class Enemy : MonoBehaviour {
 		set{this.attackDelay = value;}
 	}
 
-	public abstract void Atack();
+	public abstract void Attack();
 }

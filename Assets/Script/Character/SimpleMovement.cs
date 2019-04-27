@@ -9,6 +9,7 @@ public class SimpleMovement : MonoBehaviour {
     public float MouseSensitivity;
     public float MoveSpeed;
     public float JumpForce;
+    public GameObject bullet;
     #endregion
    
     void Update ()
@@ -17,5 +18,26 @@ public class SimpleMovement : MonoBehaviour {
         Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * MoveSpeed) + (transform.right * Input.GetAxis("Horizontal") * MoveSpeed));
         if (Input.GetKeyDown("space"))
             Rigid.AddForce(transform.up * JumpForce);
+
+
+        if(PlayerStats.life <= 0)
+        {
+            Debug.Log("Game Over, life: " + PlayerStats.life);
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Fired");
+            Instantiate(bullet, transform.position, this.transform.rotation);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Shoot"))
+        {
+            PlayerStats.DoDamage(5);
+            Destroy(other.gameObject);
+        }
     }
 }

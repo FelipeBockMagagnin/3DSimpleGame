@@ -5,11 +5,8 @@ using UnityEngine;
 public abstract class Melee : Enemy {
 	
 	private float moveSpeed;
-	
-	public override void Atack()
-    {
-        throw new System.NotImplementedException();		
-    }    
+
+    public override void Attack(){}
 
 	public float MoveSpeed
 	{
@@ -18,4 +15,6 @@ public abstract class Melee : Enemy {
 	}	
 
 	public abstract void Move();
+
+	public abstract void Follow(Transform _target);
 }

@@ -6,7 +6,7 @@ public abstract class Ranged : Enemy {
     
 	private float rangeDistance;
 	
-	public override void Atack()
+	public override void Attack()
     {
         throw new System.NotImplementedException();
     }
