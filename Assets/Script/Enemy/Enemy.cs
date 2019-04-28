@@ -8,7 +8,10 @@ public abstract class Enemy : MonoBehaviour {
 	private float damage;
 	private int startAttackDelay;
 	private int attackDelay;
-	public GameObject target;
+    protected Animator animator;
+    public GameObject target;
+
+    public abstract void setAttributes();
 
 	public string EnemyName
 	{

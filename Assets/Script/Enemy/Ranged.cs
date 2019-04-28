@@ -5,8 +5,9 @@ using UnityEngine;
 public abstract class Ranged : Enemy {
     
 	private float rangeDistance;
-	
-	public override void Attack()
+    public GameObject bullet;
+
+    public override void Attack()
     {
         throw new System.NotImplementedException();
     }

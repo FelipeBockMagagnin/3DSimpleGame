@@ -14,7 +14,5 @@ public abstract class Melee : Enemy {
 		set{this.moveSpeed = value;}
 	}	
 
-	public abstract void Move();
-
 	public abstract void Follow(Transform _target);
 }

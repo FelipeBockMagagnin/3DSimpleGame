@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class King : Melee {
 
-    private Animator animator;
     private bool isColliding = false;
 
     private void Awake()
+    {
+        setAttributes();
+    }
+
+    public override void setAttributes()
     {
         EnemyName = "King";
         Life = 30;
@@ -16,35 +20,30 @@ public class King : Melee {
         AttackDelay = 3;
         MoveSpeed = 1.5f;
         animator = this.GetComponent<Animator>();
-        Follow(target.transform);
+        animator.SetBool("Walking", true);
     }
 
     public override void Follow(Transform _target)
     {
-        animator.SetBool("Walking", true);
+        transform.LookAt(target.transform);
+        transform.position += transform.forward * MoveSpeed * Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
-        transform.LookAt(target.transform);
-        Move();
+        Follow(target.transform);
     }
 
     public void Hit()
     {
         MoveSpeed = 2f;
-        Follow(target.transform);
+        animator.SetBool("Walking", true);
         if (isColliding == true)
         {
             PlayerStats.DoDamage(this.Damage);
             Debug.Log("Player life: " + PlayerStats.life);
             Attack();
         }
-    }
-
-    public override void Move()
-    {
-        transform.position += transform.forward * MoveSpeed * Time.deltaTime;
     }
 
     public override void Attack()

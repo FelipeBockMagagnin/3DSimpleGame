@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Mage : Ranged {
 
-    public GameObject bullet;
-    private Animator animator;
     private float waitTime;
 
     private void Awake()
+    {
+        setAttributes();
+    }
+
+    public override void setAttributes()
     {
         EnemyName = "Mage";
         Life = 30;
@@ -28,13 +31,12 @@ public class Mage : Ranged {
             Attack();
             waitTime = AttackDelay;
         }
-    }
-
-    GameObject _bullet;
+    }    
 
     public override void Attack()
-    {
+    {        
         animator.SetTrigger("Attack");
+        GameObject _bullet;
         _bullet = Instantiate(bullet, transform.position, Quaternion.LookRotation(target.transform.position));
         _bullet.transform.LookAt(target.transform);
         Destroy(bullet, 5);
