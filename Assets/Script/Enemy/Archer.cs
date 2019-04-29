@@ -7,6 +7,7 @@ public class Archer : Ranged {
     private void Awake()
     {
         setAttributes();
+        target = GameObject.Find("MainChar");
     }
     
     public override void setAttributes()

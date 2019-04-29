@@ -9,6 +9,7 @@ public class Warrior : Melee {
 	private void Awake()
 	{
         setAttributes();
+        target = GameObject.Find("MainChar");
     }	
 
     public override void setAttributes()
