@@ -20,29 +20,36 @@ public class Warrior : Melee {
         AttackDelay = 3;
         MoveSpeed = 2f;
         animator = this.GetComponent<Animator>();
-        animator.SetBool("Walking", true);
+        WaitTime = StartAttackDelay;
     }
 
 	public override void Follow(Transform _target)
 	{
-        transform.LookAt(_target);
         transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+        animator.SetBool("Walking", true);
+        MoveSpeed = 2;
     }
 
     private void FixedUpdate()
     {
-        Follow(target.transform);           
+        transform.LookAt(target.transform);
+        transform.LookAt(target.transform);
+        WaitTime -= Time.deltaTime;
+        if (WaitTime < 0)
+        {
+            Follow(target.transform);
+        }
     }
 
     public void Hit()
     {
-        MoveSpeed = 2f;
-        animator.SetBool("Walking", true);
+        MoveSpeed = 0;
+        animator.SetBool("Walking", false);
+        WaitTime = AttackDelay;
         if (isColliding == true)
         {
             PlayerStats.DoDamage(this.Damage);
             Debug.Log("Player life: " + PlayerStats.life);
-            Attack();
         }
     }
 

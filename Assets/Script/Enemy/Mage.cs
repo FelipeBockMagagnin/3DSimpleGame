@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Mage : Ranged {
 
-    private float waitTime;
-
     private void Awake()
     {
         setAttributes();
@@ -19,17 +17,17 @@ public class Mage : Ranged {
         StartAttackDelay = 2;
         AttackDelay = 10;
         animator = this.GetComponent<Animator>();
-        waitTime = StartAttackDelay;
+        WaitTime = StartAttackDelay;
     }
 
     private void FixedUpdate()
     {
         transform.LookAt(target.transform);
-        waitTime -= Time.deltaTime;
-        if (waitTime < 0)
+        WaitTime -= Time.deltaTime;
+        if (WaitTime < 0)
         {
             Attack();
-            waitTime = AttackDelay;
+            WaitTime = AttackDelay;
         }
     }    
 
@@ -40,5 +38,18 @@ public class Mage : Ranged {
         _bullet = Instantiate(bullet, transform.position, Quaternion.LookRotation(target.transform.position));
         _bullet.transform.LookAt(target.transform);
         Destroy(bullet, 5);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerShoot"))
+        {
+            Life -= 10;
+            Destroy(other.gameObject);
+            if (Life <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

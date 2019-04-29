@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Archer : Ranged {
 
-    private float waitTime;
-
     private void Awake()
     {
         setAttributes();
@@ -19,17 +17,17 @@ public class Archer : Ranged {
         StartAttackDelay = 2;
         AttackDelay = 7;
         animator = this.GetComponent<Animator>();
-        waitTime = StartAttackDelay;
+        WaitTime = StartAttackDelay;
     }
 
     private void FixedUpdate()
     {
         transform.LookAt(target.transform);
-        waitTime -= Time.deltaTime;
-        if (waitTime < 0)
+        WaitTime -= Time.deltaTime;
+        if (WaitTime < 0)
         {
             Attack();
-            waitTime = AttackDelay;
+            WaitTime = AttackDelay;
         }
     }    
 
@@ -40,5 +38,18 @@ public class Archer : Ranged {
         _bullet = Instantiate(bullet, transform.position, Quaternion.LookRotation(target.transform.position));
         _bullet.transform.LookAt(target.transform);
         Destroy(bullet, 5);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerShoot"))
+        {
+            Life -= 10;
+            Destroy(other.gameObject);
+            if (Life <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
