@@ -18,6 +18,7 @@ public class Mage : Ranged {
         AttackDelay = 10;
         animator = this.GetComponent<Animator>();
         WaitTime = StartAttackDelay;
+        Value = 10;
     }
 
     private void FixedUpdate()
@@ -40,6 +41,12 @@ public class Mage : Ranged {
         Destroy(bullet, 5);
     }
 
+    private void Die()
+    {
+        Destroy(gameObject);
+        PlayerStats.GrowPoints(Value);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerShoot"))
@@ -48,7 +55,7 @@ public class Mage : Ranged {
             Destroy(other.gameObject);
             if (Life <= 0)
             {
-                Destroy(gameObject);
+                Die();
             }
         }
     }

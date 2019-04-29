@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Shoot
   - PlayerShoot
+  - LifeItem
+  - AmmoItem
   layers:
   - Default
   - TransparentFX

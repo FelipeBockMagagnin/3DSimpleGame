@@ -21,6 +21,7 @@ public class Warrior : Melee {
         MoveSpeed = 2f;
         animator = this.GetComponent<Animator>();
         WaitTime = StartAttackDelay;
+        Value = 5;
     }
 
 	public override void Follow(Transform _target)
@@ -28,6 +29,10 @@ public class Warrior : Melee {
         transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         animator.SetBool("Walking", true);
         MoveSpeed = 2;
+        if (isColliding)
+        {
+            Attack();
+        }
     }
 
     private void FixedUpdate()
@@ -45,7 +50,6 @@ public class Warrior : Melee {
     {
         MoveSpeed = 0;
         animator.SetBool("Walking", false);
-        WaitTime = AttackDelay;
         if (isColliding == true)
         {
             PlayerStats.DoDamage(this.Damage);
@@ -53,11 +57,18 @@ public class Warrior : Melee {
         }
     }
 
+    private void Die()
+    {
+        Destroy(gameObject);
+        PlayerStats.GrowPoints(Value);
+    }
+
     public override void Attack()
     {
         MoveSpeed = 0;
         animator.SetTrigger("Attack");
         animator.SetBool("Walking", false);
+        WaitTime = AttackDelay;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,7 +84,7 @@ public class Warrior : Melee {
             Destroy(other.gameObject);
             if (Life <= 0)
             {
-                Destroy(gameObject);
+                Die();
             }
         }
     }

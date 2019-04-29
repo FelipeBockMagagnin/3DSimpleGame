@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour {
     protected Animator animator;
     public GameObject target;
     private float waitTime;
+    private int value;
 
     public abstract void setAttributes();
 
@@ -19,7 +20,12 @@ public abstract class Enemy : MonoBehaviour {
         get {return waitTime;}
         set {this.waitTime = value;}
     }
-
+    
+    public int Value
+    {
+        get { return value; }
+        set { this.value = value; }
+    }
 
 	public string EnemyName
 	{

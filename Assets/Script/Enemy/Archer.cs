@@ -18,6 +18,7 @@ public class Archer : Ranged {
         AttackDelay = 7;
         animator = this.GetComponent<Animator>();
         WaitTime = StartAttackDelay;
+        Value = 5;
     }
 
     private void FixedUpdate()
@@ -40,6 +41,12 @@ public class Archer : Ranged {
         Destroy(bullet, 5);
     }
 
+    private void Die()
+    {
+        Destroy(gameObject);
+        PlayerStats.GrowPoints(Value);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerShoot"))
@@ -48,7 +55,7 @@ public class Archer : Ranged {
             Destroy(other.gameObject);
             if (Life <= 0)
             {
-                Destroy(gameObject);
+                Die();
             }
         }
     }

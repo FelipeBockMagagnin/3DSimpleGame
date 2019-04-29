@@ -22,6 +22,7 @@ public class King : Melee {
         animator = this.GetComponent<Animator>();
         animator.SetBool("Walking", true);
         WaitTime = StartAttackDelay;
+        Value = 15;
     }
 
     public override void Follow(Transform _target)
@@ -29,6 +30,10 @@ public class King : Melee {
         transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         animator.SetBool("Walking", true);
         MoveSpeed = 2;
+        if(isColliding)
+        {
+            Attack();
+        }
     }
 
     private void FixedUpdate()
@@ -45,7 +50,6 @@ public class King : Melee {
     {
         MoveSpeed = 0;
         animator.SetBool("Walking", false);
-        WaitTime = AttackDelay;
         if (isColliding == true)
         {
             PlayerStats.DoDamage(this.Damage);
@@ -53,11 +57,18 @@ public class King : Melee {
         }
     }
 
+    private void Die()
+    {
+        Destroy(gameObject);
+        PlayerStats.GrowPoints(Value);
+    }
+
     public override void Attack()
     {
         MoveSpeed = 0;
         animator.SetTrigger("Attack");
         animator.SetBool("Walking", false);
+        WaitTime = AttackDelay;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,7 +84,7 @@ public class King : Melee {
             Destroy(other.gameObject);
             if (Life <= 0)
             {
-                Destroy(gameObject);
+                Die();
             }
         }
     }

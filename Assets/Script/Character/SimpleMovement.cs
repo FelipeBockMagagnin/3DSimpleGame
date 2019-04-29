@@ -16,8 +16,11 @@ public class SimpleMovement : MonoBehaviour {
 
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Fired");
-            Instantiate(bullet, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            if (PlayerStats.ammo > 0)
+            {
+                Instantiate(bullet, bulletSpawnPos.position, bulletSpawnPos.rotation);
+                PlayerStats.ammo--;
+            }
         }
     }
 
@@ -26,6 +29,18 @@ public class SimpleMovement : MonoBehaviour {
         if(other.CompareTag("Shoot"))
         {
             PlayerStats.DoDamage(5);
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("LifeItem"))
+        {
+            PlayerStats.Heal(10);
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("AmmoItem"))
+        {
+            PlayerStats.PickAmmo(5);
             Destroy(other.gameObject);
         }
     }
