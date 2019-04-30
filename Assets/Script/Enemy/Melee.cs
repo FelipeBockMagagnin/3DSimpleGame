@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Melee : Enemy {
 	
 	private float moveSpeed;
+    protected float startSpeed;
 
     public override void Attack(){}
 

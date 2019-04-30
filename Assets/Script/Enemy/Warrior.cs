@@ -15,11 +15,12 @@ public class Warrior : Melee {
     public override void setAttributes()
     {
         EnemyName = "Warrior";
-        Life = 10;
+        Life = 20;
         Damage = 2;
         StartAttackDelay = 2;
         AttackDelay = 3;
-        MoveSpeed = 2f;
+        MoveSpeed = 7;
+        startSpeed = MoveSpeed;
         animator = this.GetComponent<Animator>();
         WaitTime = StartAttackDelay;
         Value = 5;
@@ -29,7 +30,7 @@ public class Warrior : Melee {
 	{
         transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         animator.SetBool("Walking", true);
-        MoveSpeed = 2;
+        MoveSpeed = startSpeed;
         if (isColliding)
         {
             Attack();
@@ -61,7 +62,29 @@ public class Warrior : Melee {
     private void Die()
     {
         Destroy(gameObject);
+        drop();
         PlayerStats.GrowPoints(Value);
+    }
+
+    public override void drop()
+    {
+        float drop = Random.Range(0, 1.01f);
+        if (drop <= dropLifeRate)
+        {
+            GameObject itemLife;
+            itemLife = Instantiate(LifeItem, transform.position, Quaternion.identity);
+            itemLife.GetComponent<Rigidbody>().AddForce(Vector3.up * 5);
+            Destroy(itemLife, 20f);
+        }
+
+        drop = Random.Range(0, 1.01f);
+        if (drop <= dropAmmoRate)
+        {
+            GameObject itemAmmo;
+            itemAmmo = Instantiate(AmmoItem, transform.position, Quaternion.identity);
+            itemAmmo.GetComponent<Rigidbody>().AddForce(Vector3.up * 3);
+            Destroy(itemAmmo, 20f);
+        }
     }
 
     public override void Attack()
@@ -104,7 +127,7 @@ public class Warrior : Melee {
         if (other.CompareTag("Player"))
         {
             animator.SetBool("Walking", true);
-            MoveSpeed = 2;
+            MoveSpeed = startSpeed;
             isColliding = false;
         }
     }

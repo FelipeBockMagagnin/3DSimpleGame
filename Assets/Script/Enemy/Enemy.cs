@@ -8,12 +8,19 @@ public abstract class Enemy : MonoBehaviour {
 	private float damage;
 	private int startAttackDelay;
 	private int attackDelay;
+    [Range(0, 1)]
+    public float dropLifeRate;
+    [Range(0, 1)]
+    public float dropAmmoRate;
     protected Animator animator;
     public GameObject target;
+    public GameObject LifeItem, AmmoItem;
     private float waitTime;
     private int value;
 
     public abstract void setAttributes();
+
+    public abstract void drop();
 
     public float WaitTime
     {

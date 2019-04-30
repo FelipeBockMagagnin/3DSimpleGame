@@ -9,5 +9,6 @@ public class Shoot : MonoBehaviour {
     private void Update()
     {
         transform.Translate(Vector3.forward * speed);
+        Destroy(this.gameObject, 10f);
     }
 }

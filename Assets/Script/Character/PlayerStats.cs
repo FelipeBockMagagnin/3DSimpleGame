@@ -20,7 +20,7 @@ public class PlayerStats : MonoBehaviour {
         life = 50;
         points = 0;
         ammo = 10;
-        time = 40;
+        time = 180;
         enemyKilled = 0;
         totalTime = time;
     }

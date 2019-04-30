@@ -19,7 +19,8 @@ public class King : Melee {
         Damage = 5;
         StartAttackDelay = 2;
         AttackDelay = 3;
-        MoveSpeed = 1.5f;
+        MoveSpeed = 4;
+        startSpeed = MoveSpeed;
         animator = this.GetComponent<Animator>();
         animator.SetBool("Walking", true);
         WaitTime = StartAttackDelay;
@@ -30,7 +31,7 @@ public class King : Melee {
     {        
         transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         animator.SetBool("Walking", true);
-        MoveSpeed = 2;
+        MoveSpeed = startSpeed;
         if(isColliding)
         {
             Attack();
@@ -61,6 +62,7 @@ public class King : Melee {
     private void Die()
     {
         Destroy(gameObject);
+        drop();
         PlayerStats.GrowPoints(Value);
     }
 
@@ -104,8 +106,29 @@ public class King : Melee {
         if (other.CompareTag("Player"))
         {
             animator.SetBool("Walking", true);
-            MoveSpeed = 2;
+            MoveSpeed = startSpeed;
             isColliding = false;
+        }
+    }
+
+    public override void drop()
+    {
+        float drop = Random.Range(0, 1.01f);
+        if (drop <= dropLifeRate)
+        {
+            GameObject itemLife;
+            itemLife = Instantiate(LifeItem, transform.position, Quaternion.identity);
+            itemLife.GetComponent<Rigidbody>().AddForce(Vector3.up * 5);
+            Destroy(itemLife, 20f);
+        }
+
+        drop = Random.Range(0, 1.01f);
+        if (drop <= dropAmmoRate)
+        {
+            GameObject itemAmmo;
+            itemAmmo = Instantiate(AmmoItem, transform.position, Quaternion.identity);
+            itemAmmo.GetComponent<Rigidbody>().AddForce(Vector3.up * 3);
+            Destroy(itemAmmo, 20f);
         }
     }
 }

@@ -13,8 +13,8 @@ public class Mage : Ranged {
     public override void setAttributes()
     {
         EnemyName = "Mage";
-        Life = 30;
-        Damage = 5;
+        Life = 20;
+        Damage = 10;
         StartAttackDelay = 2;
         AttackDelay = 10;
         animator = this.GetComponent<Animator>();
@@ -45,7 +45,29 @@ public class Mage : Ranged {
     private void Die()
     {
         Destroy(gameObject);
+        drop();
         PlayerStats.GrowPoints(Value);
+    }
+
+    public override void drop()
+    {
+        float drop = Random.Range(0, 1.01f);
+        if (drop <= dropLifeRate)
+        {
+            GameObject itemLife;
+            itemLife = Instantiate(LifeItem, transform.position, Quaternion.identity);
+            itemLife.GetComponent<Rigidbody>().AddForce(Vector3.up * 5);
+            Destroy(itemLife, 20f);
+        }
+
+        drop = Random.Range(0, 1.01f);
+        if (drop <= dropAmmoRate)
+        {
+            GameObject itemAmmo;
+            itemAmmo = Instantiate(AmmoItem, transform.position, Quaternion.identity);
+            itemAmmo.GetComponent<Rigidbody>().AddForce(Vector3.up * 3);
+            Destroy(itemAmmo, 20f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

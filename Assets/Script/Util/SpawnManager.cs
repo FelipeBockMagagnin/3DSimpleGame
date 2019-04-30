@@ -14,9 +14,13 @@ public class SpawnManager : MonoBehaviour {
 
     public float waitUntilNextSpawn;
 
+    [Range(0,1)]
     public float chanceOfKing;
+    [Range(0, 1)]
     public float chanceOfWarrior;
+    [Range(0, 1)]
     public float chanceOfMage;
+    [Range(0, 1)]
     public float chanceOfArcher;
 
     public Transform[] spawnPos;

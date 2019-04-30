@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114451311432365962}
   - component: {fileID: 198319224290325042}
   - component: {fileID: 199540941398832540}
-  - component: {fileID: 114420685488007590}
   m_Layer: 0
   m_Name: ArcherShoot
   m_TagString: Shoot
@@ -148,6 +147,12 @@ TrailRenderer:
         inSlope: 0
         outSlope: 0
         tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -187,18 +192,6 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
---- !u!114 &114420685488007590
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1232570286424054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa1f174a5ee46444ab366e85f908571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &114451311432365962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa1f174a5ee46444ab366e85f908571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.4
 --- !u!198 &198319224290325042
 ParticleSystem:
   m_ObjectHideFlags: 1
