@@ -1756,9 +1756,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fde50640ffffa4681eaa38aadde7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropLifeRate: 0.3
-  dropAmmoRate: 0.3
-  target: {fileID: 0}
+  enemyName: Mage
+  life: 20
+  damage: 15
+  startAttackDelay: 2
+  attackDelay: 3
+  dropLifeRate: 0.5
+  dropAmmoRate: 0.5
+  value: 10
   LifeItem: {fileID: 1849043547573058, guid: a0d1448b1a40c9a4a8d256335ad202ad, type: 2}
   AmmoItem: {fileID: 1077194758206774, guid: cca2a8193e410f148bc8559a9a3aeb88, type: 2}
   bullet: {fileID: 1232570286424054, guid: 1cdc44ef33b9fd54bb9a1a0d7bc478ab, type: 2}

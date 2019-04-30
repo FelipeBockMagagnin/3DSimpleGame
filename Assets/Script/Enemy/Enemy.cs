@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
-	private string enemyName;
-	private float life;
-	private float damage;
-	private int startAttackDelay;
-	private int attackDelay;
+	public string enemyName;
+	public float life;
+	public float damage;
+	public int startAttackDelay;
+	public int attackDelay;
     [Range(0, 1)]
     public float dropLifeRate;
     [Range(0, 1)]
     public float dropAmmoRate;
+    public int value;
     protected Animator animator;
-    public GameObject target;
+    protected GameObject target;
     public GameObject LifeItem, AmmoItem;
-    private float waitTime;
-    private int value;
+    private float waitTime;    
 
     public abstract void setAttributes();
 
@@ -27,42 +27,6 @@ public abstract class Enemy : MonoBehaviour {
         get {return waitTime;}
         set {this.waitTime = value;}
     }
-    
-    public int Value
-    {
-        get { return value; }
-        set { this.value = value; }
-    }
-
-	public string EnemyName
-	{
-		get {return enemyName;}
-		set {this.enemyName = value;}
-	}
-
-	public float Life
-	{
-		get{return this.life;}
-		set{this.life = value;}
-	}
-
-	public float Damage
-	{
-		get{return this.damage;}
-		set{this.damage = value;}
-	}
-
-	public int StartAttackDelay
-	{
-		get{return this.startAttackDelay;}
-		set{this.startAttackDelay = value;}
-	}
-
-	public int AttackDelay
-	{
-		get{return this.attackDelay;}
-		set{this.attackDelay = value;}
-	}
 
 	public abstract void Attack();
 }

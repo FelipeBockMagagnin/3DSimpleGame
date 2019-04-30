@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 
-    public GameObject warrior;
-    public GameObject king;
-    public GameObject archer;
-    public GameObject mage;
-
-    public List<GameObject> enemys = new List<GameObject>();
-
-
+    private List<GameObject> enemys = new List<GameObject>();
+    [Header("All types of enemys")]
+    public GameObject[] warrior;
+    public GameObject[] king;
+    public GameObject[] archer;
+    public GameObject[] mage;    
     public float waitUntilNextSpawn;
 
     [Range(0,1)]
-    public float chanceOfKing;
-    [Range(0, 1)]
-    public float chanceOfWarrior;
-    [Range(0, 1)]
-    public float chanceOfMage;
-    [Range(0, 1)]
-    public float chanceOfArcher;
-
+    public float chanceOfKing, chanceOfWarrior, chanceOfMage, chanceOfArcher;
+    private enum EnemyTypes {Archer, Mage, King, Warrior}
     public Transform[] spawnPos;
-
 
     private void Awake()
     {
@@ -33,10 +24,32 @@ public class SpawnManager : MonoBehaviour {
 
     IEnumerator spawn(float waitTime)
     {
-        int i = Random.Range(0, spawnPos.Length);
-        enemys.Add(Instantiate(chooseNextSpawn(), spawnPos[i].position, Quaternion.identity));
-        yield return new WaitForSeconds(waitTime);
-        StartCoroutine(spawn(waitUntilNextSpawn));
+        if (PlayerStats.countdown <= 0)
+        {
+            int i = Random.Range(0, spawnPos.Length);
+            GameObject enemy = Instantiate(chooseNextSpawn(), spawnPos[i].position, Quaternion.identity);
+            enemys.Add(enemy);
+            yield return new WaitForSeconds(waitTime);
+        }
+        else
+        {
+            Debug.Log("Waiting" + PlayerStats.countdown);
+            yield return new WaitForSeconds(0.5f);
+        }        
+
+        if(PlayerStats.time > 0)
+        {
+            StartCoroutine(spawn(waitUntilNextSpawn));
+        }
+        else
+        {
+            Debug.Log("StopSpawn");
+            foreach (GameObject g in enemys)
+            {
+                Destroy(g);
+            }
+        }
+        
     }
 
     private GameObject chooseNextSpawn()
@@ -44,22 +57,27 @@ public class SpawnManager : MonoBehaviour {
         float totalChance = chanceOfArcher + chanceOfKing + chanceOfMage + chanceOfWarrior;
 
         float nextSpawn = Random.Range(0, totalChance);
+        int randomNumber;
 
         if(nextSpawn <= chanceOfArcher)
         {
-            return archer;
+            randomNumber = Random.Range(0, archer.Length);
+            return archer[randomNumber];
         }
         else if(nextSpawn <= (chanceOfArcher + chanceOfKing))
         {
-            return king;
+            randomNumber = Random.Range(0, king.Length);
+            return king[randomNumber];
         }
         else if(nextSpawn <= chanceOfArcher + chanceOfKing + chanceOfWarrior)
         {
-            return warrior;
+            randomNumber = Random.Range(0, warrior.Length);
+            return warrior[randomNumber];
         }
         else if(nextSpawn <= totalChance)
         {
-            return mage;
+            randomNumber = Random.Range(0, mage.Length);
+            return mage[randomNumber];
         }
         Debug.Log("nulo");
         return null;

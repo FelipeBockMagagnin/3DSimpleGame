@@ -1741,11 +1741,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0854f1cda9e5d7c4ca23fab4db5e7552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: King
+  life: 30
+  damage: 15
+  startAttackDelay: 3
+  attackDelay: 3
   dropLifeRate: 1
   dropAmmoRate: 1
-  target: {fileID: 0}
+  value: 20
   LifeItem: {fileID: 1849043547573058, guid: a0d1448b1a40c9a4a8d256335ad202ad, type: 2}
   AmmoItem: {fileID: 1077194758206774, guid: cca2a8193e410f148bc8559a9a3aeb88, type: 2}
+  moveSpeed: 10
 --- !u!136 &136910787048325792
 CapsuleCollider:
   m_ObjectHideFlags: 1

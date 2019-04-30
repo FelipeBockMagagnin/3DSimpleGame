@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Warrior : Melee {
 
-    private bool isColliding = false;
-
 	private void Awake()
 	{
         setAttributes();
@@ -13,24 +11,17 @@ public class Warrior : Melee {
     }	
 
     public override void setAttributes()
-    {
-        EnemyName = "Warrior";
-        Life = 20;
-        Damage = 2;
-        StartAttackDelay = 2;
-        AttackDelay = 3;
-        MoveSpeed = 7;
-        startSpeed = MoveSpeed;
+    {        
+        startSpeed = moveSpeed;
         animator = this.GetComponent<Animator>();
-        WaitTime = StartAttackDelay;
-        Value = 5;
+        WaitTime = startAttackDelay;
     }
 
 	public override void Follow(Transform _target)
 	{
-        transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+        transform.position += transform.forward * moveSpeed * Time.deltaTime;
         animator.SetBool("Walking", true);
-        MoveSpeed = startSpeed;
+        moveSpeed = startSpeed;
         if (isColliding)
         {
             Attack();
@@ -50,11 +41,11 @@ public class Warrior : Melee {
 
     public void Hit()
     {
-        MoveSpeed = 0;
+        moveSpeed = 0;
         animator.SetBool("Walking", false);
         if (isColliding == true)
         {
-            PlayerStats.DoDamage(this.Damage);
+            PlayerStats.DoDamage(damage);
             Debug.Log("Player life: " + PlayerStats.life);
         }
     }
@@ -63,7 +54,7 @@ public class Warrior : Melee {
     {
         Destroy(gameObject);
         drop();
-        PlayerStats.GrowPoints(Value);
+        PlayerStats.GrowPoints(value);
     }
 
     public override void drop()
@@ -89,10 +80,10 @@ public class Warrior : Melee {
 
     public override void Attack()
     {
-        MoveSpeed = 0;
+        moveSpeed = 0;
         animator.SetTrigger("Attack");
         animator.SetBool("Walking", false);
-        WaitTime = AttackDelay;
+        WaitTime = attackDelay;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,9 +95,9 @@ public class Warrior : Melee {
 
         if(other.CompareTag("PlayerShoot"))
         {
-            Life -= 10;
+            life -= 10;
             Destroy(other.gameObject);
-            if (Life <= 0)
+            if (life <= 0)
             {
                 Die();
             }
@@ -117,7 +108,7 @@ public class Warrior : Melee {
     {
         if (other.CompareTag("Player"))
         {
-            MoveSpeed = 0;
+            moveSpeed = 0;
             isColliding = true;
         }
     }
@@ -127,7 +118,7 @@ public class Warrior : Melee {
         if (other.CompareTag("Player"))
         {
             animator.SetBool("Walking", true);
-            MoveSpeed = startSpeed;
+            moveSpeed = startSpeed;
             isColliding = false;
         }
     }

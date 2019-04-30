@@ -1697,11 +1697,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9804820025b31604294b292a030b485a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropLifeRate: 0.1
-  dropAmmoRate: 0.1
-  target: {fileID: 0}
+  enemyName: Warrior
+  life: 20
+  damage: 10
+  startAttackDelay: 1
+  attackDelay: 1
+  dropLifeRate: 0.2
+  dropAmmoRate: 0.2
+  value: 5
   LifeItem: {fileID: 1849043547573058, guid: a0d1448b1a40c9a4a8d256335ad202ad, type: 2}
   AmmoItem: {fileID: 1077194758206774, guid: cca2a8193e410f148bc8559a9a3aeb88, type: 2}
+  moveSpeed: 15
 --- !u!136 &136545861494588920
 CapsuleCollider:
   m_ObjectHideFlags: 1

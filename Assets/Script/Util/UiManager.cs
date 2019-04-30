@@ -9,11 +9,23 @@ public class UiManager : MonoBehaviour {
     public Text points;
     public Text time;
 
+    public Text countDown;
+
     private void Update()
     {
         ammo.text = "Ammo : " + PlayerStats.ammo.ToString();
         life.text = "Life : " + PlayerStats.life.ToString();
         points.text = "Points : " + PlayerStats.points.ToString();
         time.text = "Time : " + PlayerStats.time.ToString("0.0");
+
+        if(PlayerStats.countdown == 0 && countDown != null)
+        {
+            Destroy(countDown.gameObject);
+        }
+
+        if (countDown != null)
+        {
+            countDown.text = PlayerStats.countdown.ToString("0");
+        }
     }
 }

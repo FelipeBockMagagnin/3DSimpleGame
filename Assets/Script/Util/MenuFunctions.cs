@@ -61,4 +61,9 @@ public class MenuFunctions : MonoBehaviour {
     {
         GameObject.Find("SceneChanger").GetComponent<SceneChanger>().GoToScene("Arena");
     }
+
+    public void ExitGame()
+    {
+
+    }
 }

@@ -12,14 +12,8 @@ public class Archer : Ranged {
     
     public override void setAttributes()
     {
-        EnemyName = "Archer";
-        Life = 10;
-        Damage = 5;
-        StartAttackDelay = 2;
-        AttackDelay = 7;
         animator = this.GetComponent<Animator>();
-        WaitTime = StartAttackDelay;
-        Value = 5;
+        WaitTime = startAttackDelay;
     }
 
     private void FixedUpdate()
@@ -29,7 +23,7 @@ public class Archer : Ranged {
         if (WaitTime < 0)
         {
             Attack();
-            WaitTime = AttackDelay;
+            WaitTime = attackDelay;
         }
     }    
 
@@ -39,14 +33,14 @@ public class Archer : Ranged {
         GameObject _bullet;
         _bullet = Instantiate(bullet, transform.position, Quaternion.LookRotation(target.transform.position));
         _bullet.transform.LookAt(target.transform);
-        Destroy(bullet, 5);
+        Destroy(_bullet, 5);
     }
 
     private void Die()
     {
         Destroy(gameObject);
         drop();
-        PlayerStats.GrowPoints(Value);
+        PlayerStats.GrowPoints(value);
     }
 
     public override void drop()
@@ -74,9 +68,9 @@ public class Archer : Ranged {
     {
         if (other.CompareTag("PlayerShoot"))
         {
-            Life -= 10;
+            life -= 10;
             Destroy(other.gameObject);
-            if (Life <= 0)
+            if (life <= 0)
             {
                 Die();
             }

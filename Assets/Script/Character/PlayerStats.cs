@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour {
     public static float ammo;
     public static float time;
     public static int enemyKilled;
+    public static float countdown;
 
     public static float totalTime;
 
@@ -21,12 +22,22 @@ public class PlayerStats : MonoBehaviour {
         points = 0;
         ammo = 10;
         time = SaveManager.matchTime;
+        countdown = SaveManager.countdownTime;
         enemyKilled = 0;
         totalTime = time;
     }
 
     private void FixedUpdate()
-    {        
+    {
+        if(countdown > 0)
+        {
+            countdown -= Time.deltaTime;
+        }
+        else
+        {
+            countdown = 0;
+        }
+
         if(time < 0 && finalPanel == false)
         {
             finalPanel = true;
