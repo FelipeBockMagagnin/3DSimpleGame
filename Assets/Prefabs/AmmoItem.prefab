@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135596300311335294}
   - component: {fileID: 23116158288007926}
   - component: {fileID: 54134588356543490}
+  - component: {fileID: 65264292437393182}
   m_Layer: 9
   m_Name: AmmoItem
   m_TagString: AmmoItem
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1077194758206774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 43.51675, y: 0.9, z: 66.554924}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,6 +100,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65264292437393182
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077194758206774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5239792, y: 1.5743141, z: 1.549881}
+  m_Center: {x: -0.025432587, y: -0.05626917, z: 0.022651672}
 --- !u!135 &135596300311335294
 SphereCollider:
   m_ObjectHideFlags: 1

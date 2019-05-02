@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour {
             finalPanel = true;
             time = 0;
         }
-        else if (time > 0 && finalPanel == false)
+        else if (time > 0 && finalPanel == false && countdown == 0)
         {
             time -= Time.deltaTime;
         }

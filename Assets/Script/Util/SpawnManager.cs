@@ -48,8 +48,7 @@ public class SpawnManager : MonoBehaviour {
             {
                 Destroy(g);
             }
-        }
-        
+        }        
     }
 
     private GameObject chooseNextSpawn()
