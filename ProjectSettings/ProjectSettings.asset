@@ -644,9 +644,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 2c82808a-b6a5-40b3-9e93-98c32d71552a
-  projectName: Main Leaf Test
-  organizationId: main-leaf
+  cloudProjectId: 329e2a39-cc7e-4b89-82d0-fa83241e2edc
+  projectName: Painful Smile Test
+  organizationId: dotcompany
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

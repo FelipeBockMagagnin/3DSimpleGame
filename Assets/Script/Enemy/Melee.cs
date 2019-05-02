@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Melee : Enemy {
 
-    protected float moveSpeed;
+    public float moveSpeed;
     protected float startSpeed;
     protected bool isColliding = false;
 
