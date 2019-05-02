@@ -50,13 +50,6 @@ public class King : Melee {
         }
     }
 
-    private void Die()
-    {
-        Destroy(gameObject);
-        drop();
-        PlayerStats.GrowPoints(value);
-    }
-
     public override void Attack()
     {
         moveSpeed = 0;
@@ -102,24 +95,5 @@ public class King : Melee {
         }
     }
 
-    public override void drop()
-    {
-        float drop = Random.Range(0, 1.01f);
-        if (drop <= dropLifeRate)
-        {
-            GameObject itemLife;
-            itemLife = Instantiate(LifeItem, transform.position, Quaternion.identity);
-            itemLife.GetComponent<Rigidbody>().AddForce(Vector3.up * 5);
-            Destroy(itemLife, 20f);
-        }
-
-        drop = Random.Range(0, 1.01f);
-        if (drop <= dropAmmoRate)
-        {
-            GameObject itemAmmo;
-            itemAmmo = Instantiate(AmmoItem, transform.position, Quaternion.identity);
-            itemAmmo.GetComponent<Rigidbody>().AddForce(Vector3.up * 3);
-            Destroy(itemAmmo, 20f);
-        }
-    }
+    
 }

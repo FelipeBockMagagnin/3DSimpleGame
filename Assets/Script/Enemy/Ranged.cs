@@ -6,8 +6,5 @@ public abstract class Ranged : Enemy {
     
     public GameObject bullet;
 
-    public override void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void Attack(){}
 }

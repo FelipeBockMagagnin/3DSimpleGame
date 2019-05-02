@@ -46,7 +46,6 @@ public class UiManager : MonoBehaviour {
 
         if (Input.GetButtonDown("Cancel") && lockPausePanel == false && lockPausePanel == false)
         {
-            Debug.Log("Active pause panel");
             ActivePausePanel();
         }
     }
@@ -61,6 +60,7 @@ public class UiManager : MonoBehaviour {
     private void Pausegame()
     {
         Time.timeScale = 0;
+        Screen.lockCursor = false;
     }
 
     private void ResumeGame()

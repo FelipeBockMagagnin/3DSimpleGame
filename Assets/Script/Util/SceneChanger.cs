@@ -30,6 +30,7 @@ public class SceneChanger : MonoBehaviour {
     /// <param name="sceneName"></param>
     public void GoToScene(string sceneName)
     {
+        Screen.lockCursor = false;
         SceneManager.LoadScene("LoadingScreen");
         StartCoroutine(loadingScreen(sceneName));        
     }

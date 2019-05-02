@@ -19,8 +19,7 @@ public abstract class Enemy : MonoBehaviour {
     private float waitTime;    
 
     public abstract void setAttributes();
-
-    public abstract void drop();
+    public abstract void Attack();
 
     public float WaitTime
     {
@@ -28,5 +27,31 @@ public abstract class Enemy : MonoBehaviour {
         set {this.waitTime = value;}
     }
 
-	public abstract void Attack();
+    protected void Drop()
+    {
+        float drop = Random.Range(0, 1.01f);
+        if (drop <= dropLifeRate)
+        {
+            GameObject itemLife;
+            itemLife = Instantiate(LifeItem, transform.position, Quaternion.identity);
+            itemLife.GetComponent<Rigidbody>().AddForce(Vector3.up * 5);
+            Destroy(itemLife, 20f);
+        }
+
+        drop = Random.Range(0, 1.01f);
+        if (drop <= dropAmmoRate)
+        {
+            GameObject itemAmmo;
+            itemAmmo = Instantiate(AmmoItem, transform.position, Quaternion.identity);
+            itemAmmo.GetComponent<Rigidbody>().AddForce(Vector3.up * 3);
+            Destroy(itemAmmo, 20f);
+        }
+    }
+
+    protected void Die()
+    {
+        Destroy(gameObject);
+        Drop();
+        PlayerStats.GrowPoints(value);
+    }    
 }
