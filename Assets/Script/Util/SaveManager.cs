@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour {
 
-    public static float countdownTime;
+    public static float countdownTime;  
     public static float matchTime;
     public static float musicVolume;
     public static float sfxVolume;
 
-    public static SaveManager instance;
+    private static SaveManager instance;
 
     private void Start()
     {
@@ -68,5 +68,4 @@ public class SaveManager : MonoBehaviour {
             Debug.Log("Carregando(sem valores)...");
         }
     }
-
 }

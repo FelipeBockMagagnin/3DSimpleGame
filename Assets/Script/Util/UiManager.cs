@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour {
     public Text ammo;
@@ -10,6 +11,15 @@ public class UiManager : MonoBehaviour {
     public Text time;
     public Text countDown;
     private SceneChanger sceneChanger;
+
+    public GameObject finalPanel;
+    public GameObject pausePanel;
+    public Text finalPoints;
+    public Text reward;
+    public Text timePassed;
+
+    private bool lockFinalPanel = false;
+    private bool lockPausePanel = false;
 
     private void Update()
     {
@@ -27,12 +37,64 @@ public class UiManager : MonoBehaviour {
         {
             countDown.text = PlayerStats.countdown.ToString("0");
         }
+
+        if (PlayerStats.finalPanel == true && lockFinalPanel == false)
+        {
+            lockFinalPanel = true;
+            ActiveFinalPanel();
+        }
+
+        if (Input.GetButtonDown("Cancel") && lockPausePanel == false && lockPausePanel == false)
+        {
+            Debug.Log("Active pause panel");
+            ActivePausePanel();
+        }
     }
 
     public void GoToScene(string scene)
     {
         sceneChanger = GameObject.Find("SceneChanger").GetComponent<SceneChanger>();
         sceneChanger.GoToScene(scene);
-        Debug.Log("Trocando cenas");
+        Debug.Log("changing scene");
+    }
+
+    private void Pausegame()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1;
+        Screen.lockCursor = true;
+    }
+
+    public void ActivePausePanel()
+    {
+        lockPausePanel = true;
+        Pausegame();
+        pausePanel.SetActive(true);
+        PlayerStats.gamePaused = true;
+    }
+
+    public void DisablePausePanel()
+    {
+        lockPausePanel = false;
+        ResumeGame();
+        pausePanel.SetActive(false);
+        PlayerStats.gamePaused = false;
+    }
+
+    public void ActiveFinalPanel()
+    {
+        finalPanel.GetComponent<Animator>().SetBool("active", true);
+        points.text = "Points : " + PlayerStats.points.ToString();
+        reward.text = "Reward : test";
+        timePassed.text = "Total Time : " + PlayerStats.totalTime.ToString("0.0");
+    }
+
+    public void DisableFinalPanel()
+    {
+        finalPanel.GetComponent<Animator>().SetBool("active", true);
     }
 }

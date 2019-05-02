@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 
-    private List<GameObject> enemys = new List<GameObject>();
     [Header("All types of enemys")]
-    public GameObject[] warrior;
-    public GameObject[] king;
-    public GameObject[] archer;
-    public GameObject[] mage;    
-    public float waitUntilNextSpawn;
+    public GameObject[] warrior, king, archer, mage;    //all types of enemys
 
-    [Range(0,1)]
-    public float chanceOfKing, chanceOfWarrior, chanceOfMage, chanceOfArcher;
-    private enum EnemyTypes {Archer, Mage, King, Warrior}
-    public Transform[] spawnPos;
+    [Header("spawn Positions")]
+    public Transform[] spawnPos;                        //all the possible spawn positions
+    public float waitUntilNextSpawn;                    //time to the next spawn                                  
+
+    [Range(0, 1)]
+    public float chanceOfKing, chanceOfWarrior, chanceOfMage, chanceOfArcher;       //the % of chance to spawn the enemy
+
+    private List<GameObject> enemys = new List<GameObject>();                       //list with all the enemys
 
     private void Awake()
     {
         StartCoroutine(spawn(waitUntilNextSpawn));
     }
 
+    /// <summary>
+    /// spawn a random enemy in a random position
+    /// </summary>
+    /// <param name="waitTime"></param>
+    /// <returns></returns>
     IEnumerator spawn(float waitTime)
     {
         if (PlayerStats.countdown <= 0)
@@ -51,6 +55,10 @@ public class SpawnManager : MonoBehaviour {
         }        
     }
 
+    /// <summary>
+    /// return a random enemy
+    /// </summary>
+    /// <returns>random enemy</returns>
     private GameObject chooseNextSpawn()
     {
         float totalChance = chanceOfArcher + chanceOfKing + chanceOfMage + chanceOfWarrior;

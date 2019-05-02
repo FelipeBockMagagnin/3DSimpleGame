@@ -16,7 +16,6 @@ public class MenuFunctions : MonoBehaviour {
     public Slider matchDurationSlider;
     public Slider startCountdownSlider;
 
-
     public void Start()
     {
         setSlidersValues();
@@ -64,6 +63,6 @@ public class MenuFunctions : MonoBehaviour {
 
     public void ExitGame()
     {
-
+        Debug.Log("game exit");
     }
 }

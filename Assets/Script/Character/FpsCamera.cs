@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FpsCamera : MonoBehaviour {
 
-	public GameObject player;
-	private Vector2 offset;
-	private Vector2 look;
-	public float sensitivity;
+	public GameObject player;           //player game object
+	private Vector2 offset;             //offset of camera in the current frame
+	private Vector2 look;               //where camera is looking
+	public float sensitivity;           //mouse sensitivity
 
 	private void Awake()
 	{

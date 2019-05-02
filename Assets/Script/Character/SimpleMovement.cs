@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SimpleMovement : MonoBehaviour {
 
-    public GameObject bullet;
-    public Transform bulletSpawnPos;
-    public float vel;
-    public float jumpForce;
-    private Rigidbody rb;
-    public bool isGrounded;
-    private CapsuleCollider col;
-    public LayerMask groundLayer;
+    public GameObject bullet;               //bullet game object
+    public Transform bulletSpawnPos;        //the spawn position of bullet
+    public float vel;                       //velocity of player
+    public float jumpForce;                 //jump force of player
+    private Rigidbody rb;                   //rigidbody of player
+    private bool isGrounded;                //if player is grounded
+    private CapsuleCollider col;            //player collisor
+    public LayerMask groundLayer;           //mask of ground
 
     private void Awake()
     {
@@ -48,9 +48,9 @@ public class SimpleMovement : MonoBehaviour {
             Debug.Log("Game Over, life: " + PlayerStats.life);
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetButtonDown("Fire1"))
         {
-            if (PlayerStats.ammo > 0)
+            if (PlayerStats.ammo > 0 && PlayerStats.gamePaused == false)
             {
                 Instantiate(bullet, bulletSpawnPos.position, bulletSpawnPos.rotation);
                 PlayerStats.ammo--;

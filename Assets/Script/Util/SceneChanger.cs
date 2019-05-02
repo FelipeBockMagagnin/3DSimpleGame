@@ -24,6 +24,10 @@ public class SceneChanger : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
     }
 
+    /// <summary>
+    /// Simple method to call the loading screen before go to the scene
+    /// </summary>
+    /// <param name="sceneName"></param>
     public void GoToScene(string sceneName)
     {
         SceneManager.LoadScene("LoadingScreen");
