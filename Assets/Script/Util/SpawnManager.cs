@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour {
 
     [Header("All types of enemys")]
+    
     public GameObject[] warrior, king, archer, mage;    //all types of enemys
 
     [Header("spawn Positions")]
