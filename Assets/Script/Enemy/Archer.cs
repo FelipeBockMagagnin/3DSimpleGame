@@ -31,7 +31,10 @@ public class Archer : Ranged {
     {
         animator.SetTrigger("Attack");
         GameObject _bullet;
-        _bullet = Instantiate(bullet, transform.position, Quaternion.LookRotation(target.transform.position));
+        
+        Vector3 spawnPos = transform.position;
+        spawnPos.y += 2;
+        _bullet = Instantiate(bullet, spawnPos, Quaternion.LookRotation(target.transform.position));
         _bullet.transform.LookAt(target.transform);
         Destroy(_bullet, 5);
     }
