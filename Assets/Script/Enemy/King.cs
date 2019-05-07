@@ -68,10 +68,19 @@ public class King : Melee {
         if (other.CompareTag("PlayerShoot"))
         {
             life -= 10;
+            
             Destroy(other.gameObject);
             if (life <= 0)
             {
                 Die();
+                foreach(GameObject g in popUps)
+                {
+                    Destroy(g);
+                }
+            }
+            else 
+            {
+                popUpDamage(10);
             }
         }
     }

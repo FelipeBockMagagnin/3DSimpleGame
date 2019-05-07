@@ -38,8 +38,7 @@ public class SpawnManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Waiting" + PlayerStats.countdown);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
         }        
 
         if(PlayerStats.time > 0)
@@ -87,7 +86,6 @@ public class SpawnManager : MonoBehaviour {
             randomNumber = Random.Range(0, mage.Length);
             return mage[randomNumber];
         }
-        Debug.Log("nulo");
         return null;
     }
 }

@@ -30,6 +30,10 @@ public class Mage : Ranged {
     public override void Attack()
     {        
         animator.SetTrigger("Attack");
+    }
+
+    public void Hit()
+    {
         GameObject _bullet;
         Vector3 spawnPos = transform.position;
         spawnPos.y += 2;
@@ -47,6 +51,14 @@ public class Mage : Ranged {
             if (life <= 0)
             {
                 Die();
+                foreach(GameObject g in popUps)
+                {
+                    Destroy(g);
+                }
+            }
+            else 
+            {
+                popUpDamage(10);
             }
         }
     }

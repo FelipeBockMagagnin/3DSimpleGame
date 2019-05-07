@@ -1780,10 +1780,13 @@ MonoBehaviour:
   life: 30
   damage: 10
   startAttackDelay: 3
+  blood: {fileID: 198671693234902020, guid: 07006a6bb585924449d14ecbce6ee191, type: 2}
   attackDelay: 3
   dropLifeRate: 0.3
   dropAmmoRate: 0.3
   value: 20
+  popUpObj: {fileID: 1967787602931748, guid: 92cf9c3ea065b0747b22122ac222b309, type: 2}
+  popUps: []
   LifeItem: {fileID: 1849043547573058, guid: a0d1448b1a40c9a4a8d256335ad202ad, type: 2}
   AmmoItem: {fileID: 1077194758206774, guid: cca2a8193e410f148bc8559a9a3aeb88, type: 2}
   bullet: {fileID: 1232570286424054, guid: 1cdc44ef33b9fd54bb9a1a0d7bc478ab, type: 2}

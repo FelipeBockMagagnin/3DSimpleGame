@@ -72,6 +72,14 @@ public class Warrior : Melee {
             if (life <= 0)
             {
                 Die();
+                foreach(GameObject g in popUps)
+                {
+                    Destroy(g);
+                }
+            }
+            else 
+            {
+                popUpDamage(10);
             }
         }
     }

@@ -29,9 +29,12 @@ public class Archer : Ranged {
 
     public override void Attack()
     {
-        animator.SetTrigger("Attack");
-        GameObject _bullet;
-        
+        animator.SetTrigger("Attack");        
+    }
+
+    public void Shoot()
+    {
+        GameObject _bullet;        
         Vector3 spawnPos = transform.position;
         spawnPos.y += 2;
         _bullet = Instantiate(bullet, spawnPos, Quaternion.LookRotation(target.transform.position));
@@ -48,6 +51,14 @@ public class Archer : Ranged {
             if (life <= 0)
             {
                 Die();
+                foreach(GameObject g in popUps)
+                {
+                    Destroy(g);
+                }
+            }
+            else 
+            {
+                popUpDamage(10);
             }
         }
     }
